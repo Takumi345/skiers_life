@@ -1,0 +1,48 @@
+<h1><%= @ski.title %></h1>
+
+  <p><%= image_tag @ski.get_image(100,100) %></p>
+  <p>投稿者：<%= @ski.user.name %></p>
+  <p><%= @ski.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+  <p><%= @ski.title %></p>
+  <%= link_to public_genre_path(@genre.id) do %>
+  <p><%= @ski.genre.name %></p>
+  <% end %>
+  <p><%= @ski.body %></p>
+</div>
+
+<%= link_to "編集する", edit_public_ski_path %>
+
+<% if @ski.user == current_user %>
+  <%= link_to "削除する", public_ski_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>
+<% if @ski.favorited_by?(current_user) %>
+  <p>
+    <%= link_to public_ski_favorites_path(@ski), method: :delete do %>
+      ♥<%= @ski.favorites.count %> いいね
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to public_ski_favorites_path(@ski), method: :post do %>
+      ♡<%= @ski.favorites.count %> いいね
+    <% end %>
+  </p>
+<% end %>
+
+<div>
+  <p>コメント件数：<%= @ski.ski_comments.count %></p>
+  <% @ski.ski_comments.each do |ski_comment| %>
+    <p><%= image_tag ski_comment.user.get_profile_image(100,100) %></p>
+    <%= ski_comment.user.name %>
+    <%= ski_comment.created_at.strftime('%Y/%m/%d') %><%= ski_comment.comment %>
+    <% if ski_comment.user == current_user %>
+      <%= link_to "削除", public_ski_ski_comment_path(ski_comment.ski, ski_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@ski, @ski_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

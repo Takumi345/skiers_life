@@ -1,2 +1,36 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<% if user_signed_in? %>
+<h2>マイページ</h2>
+
+<p>@フォロー.last(4).each do |フォロー|フォロワーの最新投稿一覧</p>
+
+<%= link_to "全ての投稿を見る", public_skis_path %>
+
+<p>link_to フォロワー会員一覧</p>
+<p>link_to いいねした記事一覧</p>
+
+<% else %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
+      <h1>SKIERS LIFE!</h1>
+
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <h2>最新投稿</h2>
+  </div><br>
+
+  <div class="row">
+  <% @skis.last(4).each do |ski| %>
+    <div class="col-lg-2 col-md-6 mb-4">
+      <%= link_to public_ski_path(ski.id) do%>
+      <p><% image_tag ski.get_image(100,100) %></p>
+      <% end %>
+      <p><%= ski.title %></p>
+    </div>
+  <% end %>
+  </div>
+
+</div>
+<% end %>

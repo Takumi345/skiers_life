@@ -1,2 +1,25 @@
-<h1>Public::Genres#new</h1>
-<p>Find me in app/views/public/genres/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h1>ジャンル登録</h1>
+    </div>
+
+    <div class="col-md-7 offset-md-2">
+  <%= form_with model: @genre, url: public_genres_path do |f| %>
+
+    <p>画像
+      <%= f.file_field :image, accept: "image/*" %>
+    </p>
+
+    <p>ジャンル名
+      <%= f.text_field :name %>
+    </p>
+
+    <p>詳細
+      <%= f.text_area :body %>
+    </p>
+
+    <p><%= f.submit '新規登録' %></p>
+  <% end %>
+</div>
+

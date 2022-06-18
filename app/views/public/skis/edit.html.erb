@@ -1,0 +1,23 @@
+<h1>投稿編集</h1>
+
+<%= form_with model: @ski, url: public_ski_path do |f| %>
+
+  <p>ジャンル
+
+  </p>
+
+  <p>画像
+    <%= f.file_field :image, accept: "image/*" %>
+  </p>
+
+  <p>タイトル
+    <%= f.text_field :title %>
+  </p>
+
+  <p>説明
+    <%= f.text_area :body %>
+  </p>
+
+  <p><%= f.submit '編集' %></p>
+  <% end %>
+  </div>

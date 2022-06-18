@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+
+      <h1>投稿一覧</h1>
+      (全<%= @skis.count %>件)
+
+    </div>
+  </div>
+
+  <div class="row">
+  <% @skis.each do |ski| %>
+    <div class="col-lg-2 col-md-6 mb-4">
+
+      <%= link_to public_ski_path(ski.id) do%>
+      <p><%= image_tag ski.get_image(100,100) %></p>
+      <% end %>
+      <p><%= ski.genre.name %></p>
+      <p><%= ski.title %></p>
+      <p><%= ski.user.name %></p>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+検索
+ジャンル絞り
