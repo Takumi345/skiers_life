@@ -1,6 +1,14 @@
-<h2><%= @genre.name %></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-1">
+      <br>
+      <h2><%= @genre.name %></h2>
+      <p><%= image_tag @genre.get_image(200,200) %></p>
+      <br>
+      <p><%= @genre.body %></p>
+      <br>
+      <%= link_to "編集する", edit_public_genre_path %>
+    </div>
+  </div>
+</div>
 
-<p><%= image_tag @genre.get_image(200,200) %></p>
-<p><%= @genre.body %></p>
-
-<%= link_to "編集する", edit_public_genre_path %>

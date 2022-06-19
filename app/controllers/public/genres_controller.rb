@@ -1,6 +1,6 @@
 class Public::GenresController < ApplicationController
   def index
-    @genres = Genre.all
+    @genres = Genre.where(is_registration: true)
   end
 
   def new

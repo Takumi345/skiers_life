@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-1">
+      <br>
+      <h2><%= @genre.name %></h2>
+      <p><%= image_tag @genre.get_image(200,200) %></p>
+      <br>
+      <p><%= @genre.body %></p>
+      <p>
+        ステータス：
+        <% if @genre.is_registration == false%>
+        申請中
+        <% else %>
+        承認済み
+        <% end %>
+      </p>
+      <br>
+      <p><%= link_to "編集する", edit_admin_genre_path %></p>
+      <p><%= link_to "削除する", admin_genre_path, method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+    </div>
+  </div>
+</div>

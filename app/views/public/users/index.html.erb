@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <br>
+
+      <h1>会員一覧</h1>
+
+    </div>
+  </div>
+
+  <div class="row">
+  <% @user.each do |user| %>
+    <div class="col-lg-2 col-md-6 mb-4">
+      <br>
+      <p><%= image_tag user.get_image(100,100) %></p>
+      <%= link_to public_user_path(user.id) do%>
+      <p><%= user.name %></p>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>

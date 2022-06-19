@@ -1,13 +1,37 @@
-<h1>ジャンル一覧</h1>
-<br>
-<%= link_to "ジャンル新規登録", new_public_genre_path %>
-<br>
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 offset-md-1">
+      <br>
+      <h2>ジャンル一覧</h2>
+      <br>
+        <%= link_to "新規ジャンル申請", new_public_genre_path %>
+      <br>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
 
-<% @genres.each do |genre| %>
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
 
-  <p><%= image_tag genre.get_image(300,300) %></p>
-  <%= link_to public_genre_path(genre.id) do %>
-  <p><%= genre.name %></p>
-  <% end %>
-<% end %>
+            <td><%= image_tag genre.get_image(100,100) %></td>
+
+            <td>
+              <%= link_to public_genre_path(genre.id) do %>
+              <%= genre.name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+

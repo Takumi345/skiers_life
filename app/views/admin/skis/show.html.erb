@@ -1,2 +1,33 @@
-<h1>Admin::Skies#show</h1>
-<p>Find me in app/views/admin/skies/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-1">
+    <h2><%= @ski.title %></h2>
+      <p><%= image_tag @ski.get_image(100,100) %></p>
+      <p>投稿者：<%= @ski.user.name %></p>
+      <p><%= @ski.created_at.strftime('%m/%d %H:%M') %></p>
+      <p><%= @ski.title %></p>
+      <%= link_to admin_genre_path(@genre.id) do %>
+      <p><%= @ski.genre.name %></p>
+      <% end %>
+      <p><%= @ski.body %></p>
+      <br>
+        <%= link_to "削除する", admin_ski_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+    </div>
+
+    <div class="col-md-4 offset-md-1">
+
+      <p>コメント件数：<%= @ski.ski_comments.count %></p>
+      <% @ski.ski_comments.each do |ski_comment| %>
+        <p><%= image_tag ski_comment.user.get_image(50,50) %>
+        <%= ski_comment.user.name %>
+        </p>
+        <p><%= ski_comment.created_at.strftime('%m/%d') %><%= ski_comment.comment %></p>
+        <p>
+          <%= link_to "削除", admin_ski_ski_comment_path(ski_comment.ski, ski_comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        </p>
+      <% end %>
+
+    </div>
+  </div>
+</div>

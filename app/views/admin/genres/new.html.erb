@@ -1,30 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
-      <br>
-      <h2>ジャンル編集</h2>
+      <h2>ジャンル登録</h2>
     </div>
 
-    <div class="col-md-7 offset-md-1">
-      <%= form_with model: @genre, url: public_genre_path do |f| %>
+    <div class="col-md-6 offset-md-1">
+      <%= form_with model: @genre, url: public_genres_path do |f| %>
       <br>
       <p>画像
         <%= f.file_field :image, accept: "image/*" %>
       </p>
-      <br>
 
+      <br>
       <p>ジャンル名
         <%= f.text_field :name %>
       </p>
-      <br>
 
+      <br>
       <p>詳細
         <%= f.text_area :body %>
       </p>
-      <br>
 
-      <p><%= f.submit '編集' %></p>
+      <br>
+      <p><%= f.submit '新規登録' %></p>
       <% end %>
     </div>
   </div>
 </div>
+

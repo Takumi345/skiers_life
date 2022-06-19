@@ -1,27 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-
-      <h1>投稿一覧</h1>
+      <br>
+      <h2>投稿一覧</h2>
       (全<%= @skis.count %>件)
-
     </div>
   </div>
+
+  <%= form_with(url: public_skis_path, method: :get, local: true) do |f| %>
+  <div class="field">
+    <%= f.collection_select(:genre_id, @genre, :id, :name) %>
+  </div>
+  <p><%= f.submit 'ジャンルを絞る' %></p>
+  <% end %>
+
+
+
 
   <div class="row">
-  <% @skis.each do |ski| %>
-    <div class="col-lg-2 col-md-6 mb-4">
-
-      <%= link_to public_ski_path(ski.id) do%>
-      <p><%= image_tag ski.get_image(100,100) %></p>
-      <% end %>
-      <p><%= ski.genre.name %></p>
-      <p><%= ski.title %></p>
-      <p><%= ski.user.name %></p>
-    </div>
-  <% end %>
+    <% @skis.each do |ski| %>
+      <div class="col-lg-3 col-md-12 mb-4">
+        <br>
+        <%= link_to public_ski_path(ski.id) do%>
+          <p><%= image_tag ski.get_image(100,100) %></p>
+        <% end %>
+        <p><%= ski.genre.name %></p>
+        <p>タイトル：<%= ski.title %></p>
+        <p>投稿者：<%= ski.user.name %></p>
+      </div>
+    <% end %>
   </div>
 </div>
-
-検索
-ジャンル絞り

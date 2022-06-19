@@ -1,0 +1,2 @@
+module Admin::SkiCommentsHelper
+end

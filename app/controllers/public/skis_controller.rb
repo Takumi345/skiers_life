@@ -1,11 +1,15 @@
 class Public::SkisController < ApplicationController
   def index
     @skis = Ski.all
+    #if 検索データが送られてきた場合
+    @genre = Genre.where(is_registration: true)
+    #@gemres = Genre.where(name: paramsでおくられてくるデータ)
+
   end
 
   def new
     @ski = Ski.new
-    @genre = Genre.all
+    @genre = Genre.where(is_registration: true)
   end
 
   def create
@@ -42,6 +46,10 @@ class Public::SkisController < ApplicationController
 
   def ski_params
     params.require(:ski).permit(:image, :title, :genre_id, :body)
+  end
+
+  def genre_search_params
+    permit(:name)
   end
 
 

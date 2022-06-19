@@ -1,19 +1,47 @@
 <% if user_signed_in? %>
-<h2>マイページ</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
+      <br>
+      <h1>SKIERS LIFE!</h1>
+      <br>
+      <br>
+    </div>
+  </div>
+  <h2>最新投稿</h2>
+  <br>
+  <div class="row">
+  <br>
+  <% @skis.last(4).each do |ski| %>
+    <div class="col-lg-3 col-md-12 mb-4">
+      <%= link_to public_ski_path(ski.id) do%>
+      <p><%= image_tag ski.get_image(100,100) %></p>
+      <% end %>
+      <p>タイトル：<%= ski.title %></p>
+    </div>
+  <% end %>
+  </div>
 
-<p>@フォロー.last(4).each do |フォロー|フォロワーの最新投稿一覧</p>
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to "全ての投稿を見る", public_skis_path %>
+      <br>
+      <br>
+      <p><%= link_to "フォロー会員一覧" , public_relationships_followings_path %></p>
+      <p><%= link_to "フォロワー会員一覧" , public_relationships_followers_path %></p>
+      <br>
+    </div>
+  </div>
+</div>
 
-<%= link_to "全ての投稿を見る", public_skis_path %>
-
-<p>link_to フォロワー会員一覧</p>
-<p>link_to いいねした記事一覧</p>
 
 <% else %>
 <div class="container">
   <div class="row">
     <div class="col-md-4 offset-md-2">
+      <br>
       <h1>SKIERS LIFE!</h1>
-
+      <br>
     </div>
   </div>
 
@@ -24,9 +52,7 @@
   <div class="row">
   <% @skis.last(4).each do |ski| %>
     <div class="col-lg-2 col-md-6 mb-4">
-      <%= link_to public_ski_path(ski.id) do%>
-      <p><% image_tag ski.get_image(100,100) %></p>
-      <% end %>
+      <p><%= image_tag ski.get_image(100,100) %></p>
       <p><%= ski.title %></p>
     </div>
   <% end %>
