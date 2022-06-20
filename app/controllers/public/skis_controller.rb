@@ -1,9 +1,8 @@
 class Public::SkisController < ApplicationController
   def index
-    @skis = Ski.all
-    #if 検索データが送られてきた場合
     @genre = Genre.where(is_registration: true)
-    #@gemres = Genre.where(name: paramsでおくられてくるデータ)
+    @search_params = genre_search_params
+    @skis = Ski.search(@search_params).includes(:genre)
 
   end
 
@@ -49,7 +48,7 @@ class Public::SkisController < ApplicationController
   end
 
   def genre_search_params
-    permit(:name)
+    params.fetch(:search, {}).permit(:genre_id)
   end
 
 

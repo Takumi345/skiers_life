@@ -1,50 +1,35 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
-      <table class="table">
-        <thead>
-          <tr>
-            <td><%= @user.name%>さんの会員情報編集</td>
-          </tr>
-        </thead>
+      <br>
+      <h2><%= @user.name%>さんの会員情報編集</h2>
+      <br>
+      <%= form_with model: @user, url: admin_user_path(@user) do |f| %>
+      <br>
 
-        <tbody>
-          <%= form_with model: @user, url: admin_user_path(@user) do |f| %>
-          <tr>
-            <td>プロフィール画像</td>
-            <td><%= f.file_field :image, accept: "image/*" %></td>
-          </tr>
+      <p>プロフィール画像</p>
+      <p><%= f.file_field :image, accept: "image/*" %></p>
 
-          <tr>
-            <td>ニックネーム</td>
-            <td>
-              <%= f.text_field :name %>
-            </td>
-          </tr>
+      <p>ニックネーム</p>
+      <p>
+        <%= f.text_field :name %>
+      </p>
 
-          <tr>
-            <td>メールアドレス</td>
-            <td>
-              <%= f.email_field :email %>
-            </td>
-          </tr>
+      <p>メールアドレス</p>
+      <p>
+        <%= f.email_field :email %>
+      </p>
 
-          <tr>
-            <td>販売ステータス</td>
-            <td>
-              <%= f.radio_button :is_deleted, false %>
-              <%= f.label :is_deleted, "有効", {value: true, style: "display: inline-block;"} %>
-              <%= f.radio_button :is_deleted, true %>
-              <%= f.label :is_deleted, "退会", {value: false, style: "display: inline-block;"} %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <p>販売ステータス</p>
+      <p>
+        <%= f.radio_button :is_deleted, false %>
+        <%= f.label :is_deleted, "有効", {value: true, style: "display: inline-block;"} %>
+        <%= f.radio_button :is_deleted, true %>
+        <%= f.label :is_deleted, "退会", {value: false, style: "display: inline-block;"} %>
+      </p>
+      <br>
+      <p><%= f.submit '変更を保存' %></p>
+      <% end %>
     </div>
   </div>
-
-  <div class="col-md-5 offset-md-2">
-    <p><%= f.submit '変更を保存' %></p>
-  </div>
-  <% end %>
 </div>

@@ -24,7 +24,7 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = current_user
-    @user.update(is_deleted: false)
+    @user.update(is_deleted: true)
     sign_out current_user
     redirect_to root_path
   end

@@ -18,4 +18,10 @@ class Ski < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+      genre_id_is(search_params[:genre_id])
+    end
+  scope :genre_id_is, -> (genre_id) { where(genre_id: genre_id) if genre_id.present? }
+
 end

@@ -7,14 +7,13 @@
     </div>
   </div>
 
-  <%= form_with(url: public_skis_path, method: :get, local: true) do |f| %>
+  <%= form_with(scope: :search, url: public_skis_path, method: :get, local: true) do |f| %>
+
   <div class="field">
-    <%= f.collection_select(:genre_id, @genre, :id, :name) %>
+    <%= f.collection_select(:genre_id, @genre, :id, :name, include_blank: '全て') %>
   </div>
   <p><%= f.submit 'ジャンルを絞る' %></p>
   <% end %>
-
-
 
 
   <div class="row">
