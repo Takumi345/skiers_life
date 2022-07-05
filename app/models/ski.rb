@@ -6,6 +6,9 @@ class Ski < ApplicationRecord
   has_many :ski_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  validates :title, presence: true
+  validates :body, presence: true
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

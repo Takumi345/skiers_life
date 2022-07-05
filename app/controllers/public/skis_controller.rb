@@ -14,8 +14,11 @@ class Public::SkisController < ApplicationController
   def create
     @ski = Ski.new(ski_params)
     @ski.user_id = current_user.id
-    @ski.save
-    redirect_to public_ski_path(@ski.id)
+    if @ski.save
+      redirect_to public_ski_path(@ski.id)
+    else
+      redirect_to new_public_ski_path
+    end
   end
 
   def show
