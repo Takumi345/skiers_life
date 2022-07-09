@@ -17,7 +17,8 @@ class Public::SkisController < ApplicationController
     if @ski.save
       redirect_to public_ski_path(@ski.id)
     else
-      redirect_to new_public_ski_path
+      @genre = Genre.where(is_registration: true)
+      render :new
     end
   end
 

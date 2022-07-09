@@ -6,6 +6,16 @@
     </div>
 
     <div class="col-md-7 offset-md-1">
+
+      <% if @ski.errors.any? %>
+        <%= @ski.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @ski.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <%= form_with model: @ski, url: public_skis_path do |f| %>
       <br>
       <p>ジャンル

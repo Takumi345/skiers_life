@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-5 offset-md-1">
       <h2><%= @ski.title %></h2>
+
       <p><%= image_tag @ski.get_image(100,100) %></p>
       <p>投稿者：<%= @ski.user.name %></p>
       <p><%= @ski.created_at.strftime('%m/%d %H:%M') %></p>
@@ -49,8 +50,17 @@
         </p>
       <% end %>
 
+      <% if @ski_comment.errors.any? %>
+        <%= @ski_comment.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @ski_comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <%= form_with model: [:public, @ski, @ski_comment] do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに入力" %>
         <%= f.submit "送信する" %>
       <% end %>
     </div>
