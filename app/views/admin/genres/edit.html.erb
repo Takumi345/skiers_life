@@ -26,9 +26,9 @@
       <p>ステータス</p>
         <p>
           <%= f.radio_button :is_registration, false %>
-          <%= f.label :is_registration, "申請中", {value: true, style: "display: inline-block;"} %>
+          <%= f.label :is_registration, "申請中", {value: false, style: "display: inline-block;"} %>
           <%= f.radio_button :is_registration, true %>
-          <%= f.label :is_registration, "承認済み", {value: false, style: "display: inline-block;"} %>
+          <%= f.label :is_registration, "承認済み", {value: true, style: "display: inline-block;"} %>
         </p>
 
       <p><%= f.submit '編集' %></p>
