@@ -1,4 +1,8 @@
 class Public::SkisController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :correct_post,only: [:edit, :new ,:destroy]
+
   def index
     @genre = Genre.where(is_registration: true)
     @search_params = genre_search_params
@@ -55,5 +59,11 @@ class Public::SkisController < ApplicationController
     params.fetch(:search, {}).permit(:genre_id)
   end
 
+  def correct_post
+    @ski = Ski.find(params[:id])
+    unless @ski.user.id == current_user.id
+      redirect_to public_ski_path
+    end
+  end
 
 end
