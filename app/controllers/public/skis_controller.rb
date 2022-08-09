@@ -1,7 +1,7 @@
 class Public::SkisController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :correct_post,only: [:edit, :new ,:destroy]
+  before_action :correct_post,only: [:edit,:destroy]
 
   def index
     @genre = Genre.where(is_registration: true)
